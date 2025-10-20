@@ -84,10 +84,6 @@ body{
 }
 .card-link{transition: box-shadow .2s ease, transform .02s ease;color:var(--fg)}
 .card-link:hover{box-shadow:0 8px 24px rgba(0,0,0,.1)}
-.avatar{
-  width:64px;height:64px;border-radius:16px;
-  background: linear-gradient(135deg, #60a5fa, #a78bfa); /* blue to purple gradient */
-}
 
 /* Typography */
 .h1{font-size:clamp(1.75rem,2vw,2rem);font-weight:600;color:var(--fg)}
@@ -186,5 +182,28 @@ a.card[href*="now"]{
   }
   @keyframes spinRainbow {
     to { --angle: 1turn; }
+  }
+}
+/* Avatar: smaller and aligned cleanly beside text */
+.avatar{
+  width:120px;
+  height:120px;
+  border-radius:16px;
+  overflow:hidden;
+  flex-shrink:0;
+  align-self:flex-start; /* keeps it top-aligned with your name */
+}
+
+.avatar img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:block;
+}
+
+@media (min-width:900px){
+  .avatar{
+    width:140px;
+    height:140px;
   }
 }
