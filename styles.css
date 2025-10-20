@@ -1,0 +1,190 @@
+/* CSS reset (lite) */
+*,*::before,*::after{box-sizing:border-box}
+*{margin:0}
+html,body{height:100%}
+img,svg{display:block;max-width:100%}
+button{background:none;border:0;cursor:pointer}
+a{text-decoration:none}
+
+/* Theme: PERMANENT LIGHT MODE */
+:root{
+  --bg: #fafafa;
+  --fg: #111111;           /* black text */
+  --muted: #444444;        /* softer gray text */
+  --card: #ffffff;
+  --bdr: #e5e7eb;
+  --bdr-strong:#d1d5db;
+  --chip-bg:#f6f7f8;
+  --accent:#2563eb;        /* blue-600 for accents */
+  --accent-2:#6d28d9;      /* purple for variety */
+  --shadow: 0 1px 2px rgba(0,0,0,.06), 0 1px 3px rgba(0,0,0,.1);
+}
+
+body{
+  font: 16px/1.6 system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;
+  background: var(--bg);
+  color: var(--fg);
+}
+
+/* Layout helpers */
+.wrap{max-width:960px;margin-inline:auto;padding-inline:16px}
+.row{display:flex;gap:8px}
+.row.center{align-items:center}
+.row.start{align-items:flex-start}
+.row.between{justify-content:space-between}
+.wrap.pad-y-64{padding-block:64px}
+.gap-8{gap:8px}
+.gap-12{gap:12px}
+.gap-16{gap:16px}
+.gap-24{gap:24px}
+.mb-8{margin-bottom:8px}
+.mb-16{margin-bottom:16px}
+.mb-24{margin-bottom:24px}
+.mb-40{margin-bottom:40px}
+
+/* Header */
+.site-header{
+  position: sticky; top:0; z-index:10;
+  backdrop-filter: blur(8px);
+  background: rgba(255,255,255,0.9);
+  border-bottom: 1px solid var(--bdr);
+}
+.site-name{font-weight:600;color:var(--fg)}
+
+/* Buttons / chips */
+.btn{padding:.5rem .75rem;border:1px solid var(--bdr);border-radius:12px;color:var(--fg)}
+.btn-ghost:hover{background:rgba(0,0,0,0.05)}
+.icon-btn{width:36px;height:36px;border:1px solid var(--bdr);border-radius:12px;display:grid;place-items:center;color:var(--fg)}
+.icon{width:18px;height:18px;stroke:currentColor;fill:none;stroke-width:2}
+.icon path,.icon circle{vector-effect:non-scaling-stroke}
+
+/* Remove dark mode logic */
+.icon-sun, .icon-moon {display:none;}
+
+/* Badges / pills */
+.chip{
+  display:inline-flex;align-items:center;gap:8px;
+  padding:.5rem .75rem;border-radius:12px;
+  border:1px solid var(--bdr-strong); background:var(--chip-bg);
+  color:var(--fg);
+}
+.pill{
+  display:inline-block;padding:.35rem .75rem;border-radius:999px;
+  border:1px solid var(--bdr);color:var(--muted)
+}
+
+/* Cards */
+.card{
+  border:1px solid var(--bdr);
+  background: var(--card);
+  border-radius:24px;
+  padding:24px;
+  box-shadow: var(--shadow);
+  color:var(--fg);
+}
+.card-link{transition: box-shadow .2s ease, transform .02s ease;color:var(--fg)}
+.card-link:hover{box-shadow:0 8px 24px rgba(0,0,0,.1)}
+.avatar{
+  width:64px;height:64px;border-radius:16px;
+  background: linear-gradient(135deg, #60a5fa, #a78bfa); /* blue to purple gradient */
+}
+
+/* Typography */
+.h1{font-size:clamp(1.75rem,2vw,2rem);font-weight:600;color:var(--fg)}
+.h2{font-size:1.125rem;font-weight:600;color:var(--fg)}
+.h3{font-size:1rem;font-weight:600;color:var(--fg)}
+.muted{color:var(--muted)}
+.lead{color:var(--fg);max-width:65ch;margin-top:8px;margin-bottom:16px}
+
+/* Links */
+a, a:visited, a:active{
+  color:var(--accent);
+  text-decoration:underline;
+  text-underline-offset:3px;
+  transition:color .2s ease;
+}
+a:hover{color:var(--accent-2);}
+
+/* Lists */
+.list{padding-left:1.25rem;color:var(--fg)}
+.list li{list-style:disc;margin-bottom:.25rem}
+
+/* Grids */
+.grid-2{display:grid;grid-template-columns:1fr;gap:16px}
+.grid-3{display:grid;grid-template-columns:1fr;gap:16px}
+@media (min-width:700px){
+  .grid-2{grid-template-columns:1fr 1fr}
+  .grid-3{grid-template-columns:repeat(3,1fr)}
+}
+
+/* Dots */
+.dot{display:inline-block;width:12px;height:12px;border-radius:999px}
+.dot-emerald{background:var(--accent)}
+
+/* Footer */
+.footer{
+  border-top:1px solid var(--bdr);text-align:center;
+  padding:24px;color:var(--muted)
+}
+/* --- Link presentation: no underline until hover/focus --- */
+a, a:visited {
+  color: var(--accent);            /* blue */
+  text-decoration: none;
+}
+a:hover,
+a:focus-visible {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  color: var(--accent-2);          /* purple */
+}
+
+/* --- Add tasteful color back to key text --- */
+.h1{
+  /* blue → purple gradient text */
+  background: linear-gradient(90deg, #2563eb 0%, #6d28d9 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.h3{ color: var(--accent-2); }     /* project titles a subtle purple */
+
+/* --- RAINBOW BORDER for all "Now" buttons/blocks --- */
+/* 1) Small chip buttons that go to now.html */
+.chip[href*="now"]{
+  position: relative;
+  border: 2px solid transparent;       /* we’ll paint the border via backgrounds */
+  border-radius: 12px;
+  background:
+    linear-gradient(var(--chip-bg), var(--chip-bg)) padding-box,
+    conic-gradient(from var(--angle, 0turn),
+      #ff0055, #ff8800, #ffee00, #22cc88, #00aaff, #7c3aed, #ff0055) border-box;
+  color: var(--fg);
+}
+
+/* 2) The big "Now →" card that links to now.html */
+a.card[href*="now"]{
+  position: relative;
+  border: 2px solid transparent;
+  border-radius: 24px;
+  background:
+    linear-gradient(var(--card), var(--card)) padding-box,
+    conic-gradient(from var(--angle, 0turn),
+      #ff0055, #ff8800, #ffee00, #22cc88, #00aaff, #7c3aed, #ff0055) border-box;
+  color: var(--fg);
+}
+
+/* Optional: make the rainbow slowly rotate (disabled for reduced motion) */
+@media (prefers-reduced-motion: no-preference){
+  @property --angle {
+    syntax: "<angle>";
+    inherits: false;
+    initial-value: 0turn;
+  }
+  .chip[href*="now"],
+  a.card[href*="now"]{
+    animation: spinRainbow 12s linear infinite;
+  }
+  @keyframes spinRainbow {
+    to { --angle: 1turn; }
+  }
+}

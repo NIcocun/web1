@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Now — Nicolas Perez</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="wrap row between center">
+      <a class="btn btn-ghost row center gap-8" href="index.html">
+        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M15 18 9 12l6-6"/><path d="M21 12H9"/></svg>
+        Back
+      </a>
+      <button class="icon-btn" id="themeToggle" aria-label="Toggle theme">
+        <svg class="icon icon-sun" viewBox="0 0 24 24"><path d="M12 4V2M12 22v-2M4 12H2m20 0h-2M5 5 3.5 3.5M20.5 20.5 19 19M5 19 3.5 20.5M20.5 3.5 19 5"/><circle cx="12" cy="12" r="4"/></svg>
+        <svg class="icon icon-moon" viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      </button>
+    </div>
+  </header>
+
+  <main class="wrap pad-y-64">
+    <h1 class="h1 mb-8">Now</h1>
+    <p class="muted mb-24">
+      This is what I’m currently focused on as of <strong>October 20, 2025</strong> 
+    </p>
+
+    <section class="mb-24">
+      <h2 class="h2 mb-8">📍 Location</h2>
+      <p>Currently traveling the world — recently in Ericeira, Portugal.
+         Most days are a mix of surfing, filming, writing, and long morning runs along whatever coast I’m near.</p>
+    </section>
+
+    <section class="mb-24">
+      <h2 class="h2 mb-8">🎬 Projects</h2>
+      <ul class="list">
+        <li>Creating videos for YouTube and documenting the journey.</li>
+        <li>Experimenting with short stories and writing in general.</li>
+        <li>Teaching yoga whenever possible along the way.</li>
+      </ul>
+    </section>
+
+    <section class="mb-24">
+      <h2 class="h2 mb-8">📚 Reading</h2>
+      <p>I spend a lot of my time reading, so if you want to keep up,
+        follow my <a class="link" href="https://goodreads.com">Goodreads</a> instead.</p>
+    </section>
+
+    <footer class="muted center">Last updated: October 20, 2025</footer>
+  </main>
+
+  <script>
+    const root = document.documentElement;
+    const toggle = document.getElementById('themeToggle');
+    const saved = localStorage.getItem('theme');
+    if (saved) root.classList.toggle('dark', saved === 'dark');
+    toggle.addEventListener('click', () => {
+      root.classList.toggle('dark');
+      localStorage.setItem('theme', root.classList.contains('dark') ? 'dark' : 'light');
+    });
+  </script>
+</body>
+</html>
