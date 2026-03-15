@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Now — Nicolas Perez</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="wrap row between center">
+      <a class="btn btn-ghost row center gap-8" href="index.html">
+        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M15 18 9 12l6-6"/><path d="M21 12H9"/></svg>
+        Back
+      </a>
+      <button class="icon-btn" id="themeToggle" aria-label="Toggle theme">
+        <svg class="icon icon-sun" viewBox="0 0 24 24"><path d="M12 4V2M12 22v-2M4 12H2m20 0h-2M5 5 3.5 3.5M20.5 20.5 19 19M5 19 3.5 20.5M20.5 3.5 19 5"/><circle cx="12" cy="12" r="4"/></svg>
+        <svg class="icon icon-moon" viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      </button>
+    </div>
+  </header>
+
+  <main class="wrap pad-y-64">
+    <h1 class="h1 mb-8">Now</h1>
+    <p class="muted mb-24">
+      This is what I’m currently focused on as of <strong>March 15, 2026</strong> 
+    </p>
+
+    <section class="mb-24">
+      <h2 class="h2 mb-8">📍 Location</h2>
+      <p>Currently traveling full-time, recently in Bali.</p>
+    </section>
+
+    <section class="mb-24">
+      <h2 class="h2 mb-8">🎬 Now</h2>
+      <ul class="list">
+        <p>I've been in Bali for 3 months now, and it feels sooo nice to relax after constantly moving around. I've been going to the gym again, taking a yoga class (or two) every day, and trying to finish online high school (I'll probably finish in 1-2 months). I recently took a 10-hour handpan training and have been practicing it a lot. I'm assisting a Yoga Nidra training with Emily Kuser later this month, and in July, I'll be assisting a 200-hour Power Yoga Training with Paul Teodo. I've put my YouTube channel on the back burner for now. I still love making videos, but instead of putting pressure on myself to make the best videos possible, which was making me hate making videos, I've decided I'm just going to upload whenever my heart calls me to. Same thing with my newsletter. I stopped sending it weekly because I wasn't liking the quality of stuff I was sending out. I prefer to put less content out but make it as best as possible. Yes, i'm not sending weekly newsletters anymore, but maybe some months I'll send one newsletter or some months i'll send 10. I prefer it this way because I'm not tied to a schedule.  Also currently working on a web app for another project. So many opportunities have been appearing out of nowhere for me recently, and I'm so grateful. I was telling my parents the other day about how I feel like I'm living my own version of The Surrender Experiment. It's an autobiography of Michael A. Singer's life about how he decided to stop. letting an autobiography detailing his decision to stop letting personal fears, desires, and ego-driven preferences dictate his life. Instead, he chose to "surrender" to the unfolding flow of life, accepting whatever presented itself, which led to extraordinary personal success, profound inner peace, and a billion-dollar company. I don't have a billion-dollar company (yet lol), but all these small things that have been appearing right now seem like they don’t make sense at all in terms of how they're connected, but I trust that in the future the dots will all somehow connect. </p>
+
+
+       
+    </section>
+
+    <section class="mb-24">
+      <h2 class="h2 mb-8">📚 Reading</h2>
+      <p>I spend a lot of my time reading, so if you want to keep up,
+        follow my <a class="link" href="https://goodreads.com">Goodreads</a> instead.</p>
+    </section>
+
+
+
+    <footer class="muted center">Last updated: March 15, 2026</footer>
+  </main>
+
+  <script>
+    const root = document.documentElement;
+    const toggle = document.getElementById('themeToggle');
+    const saved = localStorage.getItem('theme');
+    if (saved) root.classList.toggle('dark', saved === 'dark');
+    toggle.addEventListener('click', () => {
+      root.classList.toggle('dark');
+      localStorage.setItem('theme', root.classList.contains('dark') ? 'dark' : 'light');
+    });
+  </script>
+</body>
+</html>
