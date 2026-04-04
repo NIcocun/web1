@@ -8,20 +8,29 @@ a{text-decoration:none}
 
 /* Theme: PERMANENT LIGHT MODE */
 :root{
-  --bg: #fafafa;
-  --fg: #111111;           /* black text */
+  --primary: #1d4ed8;
+  --secondary: #0f172a;
+  --background: #fafafa;
+  --text: #111111;
+  --accent: #d97706;
+  --bg: var(--background);
+  --fg: var(--text);       /* black text */
   --muted: #444444;        /* softer gray text */
   --card: #ffffff;
   --bdr: #e5e7eb;
   --bdr-strong:#d1d5db;
   --chip-bg:#f6f7f8;
-  --accent:#2563eb;        /* blue-600 for accents */
-  --accent-2:#6d28d9;      /* purple for variety */
+  --accent-strong:#b45309;
+  --primary-hover:#1e40af;
+  --secondary-hover:#1e293b;
   --shadow: 0 1px 2px rgba(0,0,0,.06), 0 1px 3px rgba(0,0,0,.1);
+  --focus-ring: 0 0 0 3px rgba(217, 119, 6, 0.28);
 }
 
 body{
-  font: 16px/1.6 system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;
+  font-family: Roboto, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-size: 1rem;
+  line-height: 1.6;
   background: var(--bg);
   color: var(--fg);
 }
@@ -52,9 +61,52 @@ body{
 .site-name{font-weight:600;color:var(--fg)}
 
 /* Buttons / chips */
-.btn{padding:.5rem .75rem;border:1px solid var(--bdr);border-radius:12px;color:var(--fg)}
-.btn-ghost:hover{background:rgba(0,0,0,0.05)}
-.icon-btn{width:36px;height:36px;border:1px solid var(--bdr);border-radius:12px;display:grid;place-items:center;color:var(--fg)}
+.btn,
+button,
+[type="button"],
+[type="submit"],
+[type="reset"]{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:.5rem;
+  padding:.5rem .75rem;
+  border:1px solid var(--primary);
+  border-radius:12px;
+  background: var(--primary);
+  color:#ffffff;
+  font-family: Roboto, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-size:1rem;
+  font-weight:500;
+  line-height:1.2;
+  transition:background-color .2s ease, border-color .2s ease, color .2s ease, box-shadow .2s ease, transform .2s ease;
+}
+.btn:hover,
+button:hover,
+[type="button"]:hover,
+[type="submit"]:hover,
+[type="reset"]:hover{
+  background: var(--primary-hover);
+  border-color: var(--primary-hover);
+}
+.btn-ghost{
+  background: transparent;
+  color: var(--primary);
+  border-color: var(--primary);
+}
+.btn-ghost:hover{
+  background: rgba(29, 78, 216, 0.08);
+  color: var(--primary-hover);
+  border-color: var(--primary-hover);
+}
+.icon-btn{
+  width:36px;
+  height:36px;
+  padding:0;
+  border-radius:12px;
+  display:grid;
+  place-items:center;
+}
 .icon{width:18px;height:18px;stroke:currentColor;fill:none;stroke-width:2}
 .icon path,.icon circle{vector-effect:non-scaling-stroke}
 
@@ -86,20 +138,43 @@ body{
 .card-link:hover{box-shadow:0 8px 24px rgba(0,0,0,.1)}
 
 /* Typography */
-.h1{font-size:clamp(1.75rem,2vw,2rem);font-weight:600;color:var(--fg)}
-.h2{font-size:1.125rem;font-weight:600;color:var(--fg)}
-.h3{font-size:1rem;font-weight:600;color:var(--fg)}
+h1, h2, h3,
+.h1, .h2, .h3{
+  font-family: Montserrat, "Trebuchet MS", "Segoe UI", sans-serif;
+  line-height: 1.2;
+  color: var(--secondary);
+}
+h1, .h1{font-size:clamp(2.5rem,5vw,3.5rem);font-weight:700}
+h2, .h2{font-size:clamp(1.75rem,3vw,2.25rem);font-weight:700}
+h3, .h3{font-size:clamp(1.25rem,2vw,1.5rem);font-weight:600}
+p{
+  font-family: Roboto, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-size: 1rem;
+  line-height: 1.7;
+}
 .muted{color:var(--muted)}
 .lead{color:var(--fg);max-width:65ch;margin-top:8px;margin-bottom:16px}
 
 /* Links */
 a, a:visited, a:active{
-  color:var(--accent);
+  color:var(--primary);
   text-decoration:underline;
   text-underline-offset:3px;
-  transition:color .2s ease;
+  transition:color .2s ease, text-decoration-color .2s ease, box-shadow .2s ease;
 }
-a:hover{color:var(--accent-2);}
+a:hover{
+  color:var(--accent);
+  text-decoration-color: var(--accent);
+}
+a:focus-visible,
+.btn:focus-visible,
+button:focus-visible,
+[type="button"]:focus-visible,
+[type="submit"]:focus-visible,
+[type="reset"]:focus-visible{
+  outline: 2px solid transparent;
+  box-shadow: var(--focus-ring);
+}
 
 /* Lists */
 .list{padding-left:1.25rem;color:var(--fg)}
@@ -122,27 +197,15 @@ a:hover{color:var(--accent-2);}
   border-top:1px solid var(--bdr);text-align:center;
   padding:24px;color:var(--muted)
 }
-/* --- Link presentation: no underline until hover/focus --- */
-a, a:visited {
-  color: var(--accent);            /* blue */
-  text-decoration: none;
-}
-a:hover,
-a:focus-visible {
-  text-decoration: underline;
-  text-underline-offset: 3px;
-  color: var(--accent-2);          /* purple */
-}
-
 /* --- Add tasteful color back to key text --- */
 .h1{
-  /* blue → purple gradient text */
-  background: linear-gradient(90deg, #2563eb 0%, #6d28d9 100%);
+  /* primary blue to accent amber */
+  background: linear-gradient(90deg, var(--primary) 0%, var(--accent) 100%);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
 }
-.h3{ color: var(--accent-2); }     /* project titles a subtle purple */
+.h3{ color: var(--primary); }
 
 /* --- RAINBOW BORDER for all "Now" buttons/blocks --- */
 /* 1) Small chip buttons that go to now.html */
